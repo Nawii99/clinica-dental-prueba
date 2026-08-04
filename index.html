@@ -3,34 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Clínica Dental Sonrisa — cuidamos tu salud bucodental con tecnología de vanguardia y un trato cercano. Pide tu cita hoy.">
-  <title>Clínica Dental Sonrisa | Tu dentista de confianza</title>
+  <meta name="description" content="Clínica Dental Sonrisa — odontología avanzada en Madrid. Implantes, ortodoncia invisible y estética dental con tecnología digital. Primera consulta gratuita.">
+  <title>Clínica Dental Sonrisa | Odontología avanzada en Madrid</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Barra superior -->
-  <div class="topbar">
-    <div class="container topbar__inner">
-      <span>📞 912 345 678</span>
-      <span>🕐 Lun–Vie: 9:00–20:00 · Sáb: 10:00–14:00</span>
-      <span>📍 Calle de la Salud 12, Madrid</span>
-    </div>
-  </div>
-
-  <!-- Cabecera / navegación -->
+  <!-- Cabecera -->
   <header class="header" id="inicio">
     <nav class="container nav">
-      <a href="#inicio" class="nav__logo">
-        <span class="nav__logo-icon">🦷</span> Clínica Dental <strong>Sonrisa</strong>
+      <a href="#inicio" class="nav__logo" aria-label="Clínica Dental Sonrisa">
+        <span class="nav__logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.5 2 5 4.5 5 9c0 3 1 5.5 1.8 8.2.5 1.8 1 4.8 2.5 4.8 1.7 0 1.3-3.4 2.7-3.4s1 3.4 2.7 3.4c1.5 0 2-3 2.5-4.8C18 14.5 19 12 19 9c0-4.5-3.5-7-7-7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="nav__logo-text">Clínica <em>Sonrisa</em></span>
       </a>
-      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <ul class="nav__menu" id="navMenu">
-        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#servicios">Tratamientos</a></li>
+        <li><a href="#tecnologia">Tecnología</a></li>
         <li><a href="#equipo">Equipo</a></li>
         <li><a href="#opiniones">Opiniones</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#cita" class="btn btn--primary btn--small">Pedir cita</a></li>
       </ul>
     </nav>
@@ -38,131 +37,233 @@
 
   <!-- Hero -->
   <section class="hero">
+    <div class="hero__glow hero__glow--1" aria-hidden="true"></div>
+    <div class="hero__glow hero__glow--2" aria-hidden="true"></div>
     <div class="container hero__inner">
-      <div class="hero__text">
-        <h1>Tu sonrisa, en las mejores manos</h1>
-        <p>Más de 20 años cuidando la salud bucodental de nuestros pacientes con tecnología de vanguardia y un trato cercano y honesto.</p>
+      <div class="hero__text reveal">
+        <p class="kicker kicker--light">Odontología avanzada en Madrid</p>
+        <h1>La sonrisa que quieres,<br>con la ciencia <em>que la respalda</em></h1>
+        <p class="hero__lead">Diagnóstico digital 3D, ortodoncia invisible e implantología guiada. Más de 20 años cuidando lo más visible de ti.</p>
         <div class="hero__actions">
-          <a href="#cita" class="btn btn--primary">Pedir cita ahora</a>
-          <a href="#servicios" class="btn btn--outline">Ver servicios</a>
+          <a href="#cita" class="btn btn--light">Primera consulta gratuita</a>
+          <a href="#servicios" class="btn btn--ghost">Ver tratamientos</a>
         </div>
-        <ul class="hero__badges">
-          <li>✔ Primera consulta gratuita</li>
-          <li>✔ Financiación sin intereses</li>
-          <li>✔ Urgencias el mismo día</li>
-        </ul>
+        <div class="hero__trust">
+          <div class="hero__avatars" aria-hidden="true">
+            <span>MG</span><span>JL</span><span>CR</span><span>+</span>
+          </div>
+          <p><strong>4,9/5</strong> <span class="stars">★★★★★</span><br>según 312 reseñas verificadas</p>
+        </div>
       </div>
-      <div class="hero__card">
-        <div class="hero__stat"><strong>+15.000</strong><span>pacientes atendidos</span></div>
-        <div class="hero__stat"><strong>20 años</strong><span>de experiencia</span></div>
-        <div class="hero__stat"><strong>4,9 ★</strong><span>valoración media</span></div>
+      <div class="hero__panel reveal">
+        <div class="hero__card">
+          <p class="hero__card-title">Reserva tu revisión</p>
+          <p class="hero__card-sub">Sin listas de espera · Respuesta en 24 h</p>
+          <ul class="hero__card-list">
+            <li>Revisión + radiografía 3D</li>
+            <li>Diagnóstico y plan de tratamiento</li>
+            <li>Presupuesto cerrado, sin sorpresas</li>
+          </ul>
+          <p class="hero__card-price"><s>60 €</s> <strong>Gratis</strong> <span>este mes</span></p>
+          <a href="#cita" class="btn btn--primary btn--full">Reservar ahora</a>
+        </div>
+        <div class="hero__chip hero__chip--1"><strong>+15.000</strong> pacientes</div>
+        <div class="hero__chip hero__chip--2"><strong>98 %</strong> recomiendan</div>
       </div>
     </div>
   </section>
 
-  <!-- Servicios -->
+  <!-- Franja de confianza -->
+  <div class="trustbar">
+    <div class="container trustbar__inner">
+      <span>Invisalign® Diamond Provider</span>
+      <span>Colegio de Odontólogos nº 28.4512</span>
+      <span>Escáner iTero 3D</span>
+      <span>Sedación consciente</span>
+      <span>Financiación 0 %</span>
+    </div>
+  </div>
+
+  <!-- Tratamientos -->
   <section class="section" id="servicios">
     <div class="container">
-      <h2 class="section__title">Nuestros servicios</h2>
-      <p class="section__subtitle">Tratamientos integrales para toda la familia</p>
+      <p class="kicker reveal">Tratamientos</p>
+      <h2 class="section__title reveal">Todo lo que tu boca necesita,<br>en un solo lugar</h2>
       <div class="grid grid--3">
-        <article class="card">
-          <div class="card__icon">🦷</div>
+        <article class="card reveal">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.5 2 5 4.5 5 9c0 3 1 5.5 1.8 8.2.5 1.8 1 4.8 2.5 4.8 1.7 0 1.3-3.4 2.7-3.4s1 3.4 2.7 3.4c1.5 0 2-3 2.5-4.8C18 14.5 19 12 19 9c0-4.5-3.5-7-7-7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
           <h3>Odontología general</h3>
-          <p>Revisiones, empastes, limpiezas y tratamiento de caries para mantener tu boca sana día a día.</p>
+          <p>Revisiones, empastes estéticos y limpiezas con ultrasonidos. La base de una boca sana toda la vida.</p>
+          <a class="card__link" href="#cita">Pedir cita <span aria-hidden="true">→</span></a>
         </article>
-        <article class="card">
-          <div class="card__icon">✨</div>
+        <article class="card reveal">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="m12 3 1.9 4.6L18.5 9l-4.6 1.4L12 15l-1.9-4.6L5.5 9l4.6-1.4L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m18 14 .9 2.1 2.1.9-2.1.9L18 20l-.9-2.1-2.1-.9 2.1-.9L18 14Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
           <h3>Estética dental</h3>
-          <p>Blanqueamientos, carillas y diseño de sonrisa para que luzcas tu mejor versión.</p>
+          <p>Carillas de porcelana, blanqueamiento Philips Zoom y diseño digital de sonrisa: ves el resultado antes de empezar.</p>
+          <a class="card__link" href="#cita">Pedir cita <span aria-hidden="true">→</span></a>
         </article>
-        <article class="card">
-          <div class="card__icon">🔩</div>
-          <h3>Implantes</h3>
-          <p>Recupera la funcionalidad y estética de tu boca con implantes de titanio de última generación.</p>
+        <article class="card reveal">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 3h8M9.5 3v5a2.5 2.5 0 0 0 5 0V3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 10.5V15m0 0a3 3 0 0 1 3 3v3H9v-3a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Implantología guiada</h3>
+          <p>Implantes de titanio planificados en 3D: cirugía mínimamente invasiva y dientes fijos con aspecto natural.</p>
+          <a class="card__link" href="#cita">Pedir cita <span aria-hidden="true">→</span></a>
         </article>
-        <article class="card">
-          <div class="card__icon">😁</div>
-          <h3>Ortodoncia</h3>
-          <p>Brackets y ortodoncia invisible para alinear tu sonrisa a cualquier edad.</p>
+        <article class="card reveal">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12c0-4 2.5-7 8-7s8 3 8 7-2.5 7-8 7-8-3-8-7Z" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 10.5h15M4.5 13.5h15M9 5.5v13M15 5.5v13" stroke="currentColor" stroke-width="1.4"/></svg></div>
+          <h3>Ortodoncia invisible</h3>
+          <p>Alineadores transparentes Invisalign® con seguimiento por escáner. Nadie notará que la llevas.</p>
+          <a class="card__link" href="#cita">Pedir cita <span aria-hidden="true">→</span></a>
         </article>
-        <article class="card">
-          <div class="card__icon">🧒</div>
+        <article class="card reveal">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M5 21c.8-3.5 3.6-5.5 7-5.5s6.2 2 7 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
           <h3>Odontopediatría</h3>
-          <p>Cuidado dental para los más pequeños en un entorno amable y sin miedos.</p>
+          <p>Primeras visitas sin miedo, selladores y ortodoncia interceptiva. Los niños salen sonriendo — literalmente.</p>
+          <a class="card__link" href="#cita">Pedir cita <span aria-hidden="true">→</span></a>
         </article>
-        <article class="card">
-          <div class="card__icon">🚨</div>
-          <h3>Urgencias</h3>
-          <p>¿Dolor repentino o traumatismo? Te atendemos el mismo día, sin esperas.</p>
+        <article class="card reveal">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/></svg></div>
+          <h3>Urgencias en el día</h3>
+          <p>Dolor agudo, traumatismo o rotura: te atendemos hoy. Llama y te reservamos hueco de urgencia.</p>
+          <a class="card__link" href="tel:+34912345678">912 345 678 <span aria-hidden="true">→</span></a>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- Tecnología -->
+  <section class="section section--alt" id="tecnologia">
+    <div class="container split">
+      <div class="split__text reveal">
+        <p class="kicker">Tecnología</p>
+        <h2 class="section__title section__title--left">Diagnóstico digital,<br>tratamientos predecibles</h2>
+        <p class="split__lead">Invertimos en la mejor tecnología para que cada tratamiento sea más rápido, más preciso y más cómodo.</p>
+        <ul class="checklist">
+          <li><strong>Escáner intraoral iTero</strong> — adiós a las incómodas pastas de impresión.</li>
+          <li><strong>Radiografía 3D CBCT</strong> — planificación de implantes al milímetro.</li>
+          <li><strong>Diseño de sonrisa digital</strong> — previsualiza tu resultado antes de decidir.</li>
+          <li><strong>Sedación consciente</strong> — para pacientes con miedo al dentista.</li>
+        </ul>
+        <a href="#cita" class="btn btn--primary">Compruébalo en tu primera visita</a>
+      </div>
+      <div class="split__visual reveal" aria-hidden="true">
+        <div class="visual__card visual__card--main">
+          <div class="visual__scan"></div>
+          <p>Escaneado 3D · arcada superior</p>
+          <div class="visual__bar"><span style="width:86%"></span></div>
+        </div>
+        <div class="visual__card visual__card--float1"><strong>0,1 mm</strong>precisión</div>
+        <div class="visual__card visual__card--float2"><strong>-40 %</strong>tiempo de sillón</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cifras -->
+  <section class="stats">
+    <div class="container stats__inner">
+      <div class="stat reveal"><strong data-count="15000">0</strong><span>pacientes atendidos</span></div>
+      <div class="stat reveal"><strong data-count="20">0</strong><span>años de experiencia</span></div>
+      <div class="stat reveal"><strong data-count="3200">0</strong><span>implantes colocados</span></div>
+      <div class="stat reveal"><strong data-count="98">0</strong><span>% pacientes satisfechos</span></div>
     </div>
   </section>
 
   <!-- Equipo -->
-  <section class="section section--alt" id="equipo">
+  <section class="section" id="equipo">
     <div class="container">
-      <h2 class="section__title">Nuestro equipo</h2>
-      <p class="section__subtitle">Profesionales que aman lo que hacen</p>
+      <p class="kicker reveal">Equipo</p>
+      <h2 class="section__title reveal">Profesionales que aman lo que hacen</h2>
       <div class="grid grid--3">
-        <article class="card card--team">
-          <div class="card__avatar">👩‍⚕️</div>
+        <article class="card card--team reveal">
+          <div class="card__ring"><span>LG</span></div>
           <h3>Dra. Laura Gómez</h3>
           <p class="card__role">Directora médica · Implantología</p>
-          <p>Más de 20 años de experiencia y formación continua en las mejores universidades europeas.</p>
+          <p>Doctora en Odontología (UCM). Más de 3.000 implantes y formación continua en cirugía guiada.</p>
         </article>
-        <article class="card card--team">
-          <div class="card__avatar">👨‍⚕️</div>
+        <article class="card card--team reveal">
+          <div class="card__ring"><span>CR</span></div>
           <h3>Dr. Carlos Ruiz</h3>
           <p class="card__role">Ortodoncia</p>
-          <p>Especialista en ortodoncia invisible, con cientos de sonrisas alineadas a sus espaldas.</p>
+          <p>Máster en Ortodoncia. Invisalign Diamond Provider: cientos de sonrisas alineadas sin brackets.</p>
         </article>
-        <article class="card card--team">
-          <div class="card__avatar">👩‍⚕️</div>
+        <article class="card card--team reveal">
+          <div class="card__ring"><span>AM</span></div>
           <h3>Dra. Ana Martín</h3>
           <p class="card__role">Odontopediatría</p>
-          <p>Experta en hacer que los niños salgan de la consulta con una sonrisa (y sin miedo).</p>
+          <p>Especialista en manejo de conducta infantil. La favorita de los peques (y de sus padres).</p>
         </article>
       </div>
     </div>
   </section>
 
   <!-- Opiniones -->
-  <section class="section" id="opiniones">
+  <section class="section section--alt" id="opiniones">
     <div class="container">
-      <h2 class="section__title">Lo que dicen nuestros pacientes</h2>
-      <p class="section__subtitle">Nuestra mejor carta de presentación</p>
+      <p class="kicker reveal">Opiniones</p>
+      <h2 class="section__title reveal">Nuestra mejor publicidad<br>son nuestros pacientes</h2>
       <div class="grid grid--3">
-        <blockquote class="card card--quote">
-          <p>“Me quitaron el miedo al dentista. Trato inmejorable y todo explicado con claridad desde el primer día.”</p>
-          <footer>— María S. <span class="stars">★★★★★</span></footer>
+        <blockquote class="card card--quote reveal">
+          <p class="stars">★★★★★</p>
+          <p>«Me quitaron el miedo al dentista. Todo explicado con claridad y sin dolor. El trato es de diez.»</p>
+          <footer><span class="card__mini-ring">MS</span> María S. · Implantes</footer>
         </blockquote>
-        <blockquote class="card card--quote">
-          <p>“Me hicieron los implantes y parecen dientes de verdad. El resultado superó mis expectativas.”</p>
-          <footer>— José L. <span class="stars">★★★★★</span></footer>
+        <blockquote class="card card--quote reveal">
+          <p class="stars">★★★★★</p>
+          <p>«El diseño digital me enseñó mi sonrisa antes de empezar. El resultado, idéntico. Impresionante.»</p>
+          <footer><span class="card__mini-ring">JL</span> José L. · Carillas</footer>
         </blockquote>
-        <blockquote class="card card--quote">
-          <p>“Llevo a mis dos hijos y están encantados. Instalaciones modernas y cero esperas.”</p>
-          <footer>— Carmen R. <span class="stars">★★★★★</span></footer>
+        <blockquote class="card card--quote reveal">
+          <p class="stars">★★★★★</p>
+          <p>«Llevo a mis dos hijos y vienen contentos. Cero esperas, instalaciones impecables.»</p>
+          <footer><span class="card__mini-ring">CR</span> Carmen R. · Odontopediatría</footer>
         </blockquote>
       </div>
     </div>
   </section>
 
-  <!-- Cita -->
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container container--narrow">
+      <p class="kicker reveal">Preguntas frecuentes</p>
+      <h2 class="section__title reveal">Resolvemos tus dudas</h2>
+      <div class="faq reveal">
+        <details>
+          <summary>¿La primera consulta es realmente gratuita?</summary>
+          <p>Sí: incluye revisión completa, radiografía panorámica y plan de tratamiento con presupuesto cerrado. Sin compromiso y sin letra pequeña.</p>
+        </details>
+        <details>
+          <summary>¿Ofrecéis financiación?</summary>
+          <p>Sí, hasta 36 meses sin intereses en la mayoría de tratamientos. Te calculamos la cuota en la primera visita.</p>
+        </details>
+        <details>
+          <summary>¿Duelen los implantes?</summary>
+          <p>La cirugía guiada es mínimamente invasiva y se realiza con anestesia local. La mayoría de pacientes se reincorporan a su rutina al día siguiente.</p>
+        </details>
+        <details>
+          <summary>Tengo miedo al dentista, ¿qué opciones hay?</summary>
+          <p>Trabajamos con sedación consciente supervisada por anestesista: permaneces relajado y sin ansiedad durante todo el tratamiento.</p>
+        </details>
+        <details>
+          <summary>¿Atendéis urgencias?</summary>
+          <p>Sí, el mismo día. Llama al <a href="tel:+34912345678">912 345 678</a> y te reservamos un hueco de urgencia.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + Cita -->
   <section class="section section--cta" id="cita">
     <div class="container cita__inner">
-      <div class="cita__text">
-        <h2>Pide tu cita</h2>
-        <p>Déjanos tus datos y te llamamos en menos de 24 horas para confirmar tu cita. La primera consulta es gratuita.</p>
+      <div class="cita__text reveal">
+        <p class="kicker kicker--light">Pide tu cita</p>
+        <h2>Tu nueva sonrisa<br>empieza con una visita</h2>
+        <p>Déjanos tus datos y te llamamos en menos de 24 h. La primera consulta, con radiografía incluida, es gratuita.</p>
         <ul class="cita__list">
-          <li>✔ Sin compromiso</li>
-          <li>✔ Respuesta en 24 h</li>
-          <li>✔ Diagnóstico y presupuesto cerrado</li>
+          <li>Sin compromiso ni permanencia</li>
+          <li>Presupuesto cerrado por escrito</li>
+          <li>Financiación hasta 36 meses sin intereses</li>
         </ul>
       </div>
-      <form class="form" id="formCita" novalidate>
+      <form class="form reveal" id="formCita" novalidate>
         <label>
           Nombre completo
           <input type="text" name="nombre" required placeholder="Tu nombre">
@@ -178,7 +279,7 @@
             <option>Limpieza dental</option>
             <option>Estética dental</option>
             <option>Implantes</option>
-            <option>Ortodoncia</option>
+            <option>Ortodoncia invisible</option>
             <option>Odontopediatría</option>
             <option>Urgencia</option>
           </select>
@@ -187,28 +288,33 @@
           Mensaje (opcional)
           <textarea name="mensaje" rows="3" placeholder="Cuéntanos qué necesitas"></textarea>
         </label>
-        <button type="submit" class="btn btn--primary btn--full">Solicitar cita</button>
+        <button type="submit" class="btn btn--primary btn--full">Solicitar cita gratuita</button>
+        <p class="form__note">Al enviar aceptas nuestra política de privacidad. Nunca compartimos tus datos.</p>
         <p class="form__ok" id="formOk" hidden>✅ ¡Gracias! Te llamaremos muy pronto para confirmar tu cita.</p>
       </form>
     </div>
   </section>
 
   <!-- Contacto -->
-  <section class="section section--alt" id="contacto">
+  <section class="section" id="contacto">
     <div class="container">
-      <h2 class="section__title">Contacto</h2>
+      <p class="kicker reveal">Contacto</p>
+      <h2 class="section__title reveal">Estamos muy cerca de ti</h2>
       <div class="grid grid--3">
-        <div class="card card--contact">
-          <h3>📍 Dirección</h3>
+        <div class="card card--contact reveal">
+          <h3>Dirección</h3>
           <p>Calle de la Salud 12<br>28001 Madrid</p>
+          <p class="card__extra">Metro: Serrano (L4) · Parking gratuito para pacientes</p>
         </div>
-        <div class="card card--contact">
-          <h3>📞 Teléfono</h3>
+        <div class="card card--contact reveal">
+          <h3>Contacto</h3>
           <p><a href="tel:+34912345678">912 345 678</a><br><a href="mailto:hola@clinicasonrisa.es">hola@clinicasonrisa.es</a></p>
+          <p class="card__extra">WhatsApp disponible en horario de clínica</p>
         </div>
-        <div class="card card--contact">
-          <h3>🕐 Horario</h3>
+        <div class="card card--contact reveal">
+          <h3>Horario</h3>
           <p>Lunes a viernes: 9:00–20:00<br>Sábados: 10:00–14:00</p>
+          <p class="card__extra">Urgencias: el mismo día</p>
         </div>
       </div>
     </div>
@@ -216,9 +322,29 @@
 
   <!-- Pie -->
   <footer class="footer">
-    <div class="container footer__inner">
-      <p>🦷 Clínica Dental <strong>Sonrisa</strong> — © <span id="year"></span>. Todos los derechos reservados.</p>
-      <p class="footer__legal">Aviso legal · Política de privacidad · Cookies</p>
+    <div class="container footer__grid">
+      <div>
+        <p class="footer__brand">🦷 Clínica Dental <strong>Sonrisa</strong></p>
+        <p>Odontología avanzada con trato humano en el centro de Madrid desde 2005.</p>
+      </div>
+      <div>
+        <p class="footer__head">Tratamientos</p>
+        <a href="#servicios">Implantes</a>
+        <a href="#servicios">Ortodoncia invisible</a>
+        <a href="#servicios">Estética dental</a>
+        <a href="#servicios">Odontopediatría</a>
+      </div>
+      <div>
+        <p class="footer__head">Clínica</p>
+        <a href="#equipo">Equipo</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#faq">Preguntas frecuentes</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year"></span> Clínica Dental Sonrisa. Todos los derechos reservados.</p>
+      <p>Aviso legal · Privacidad · Cookies</p>
     </div>
   </footer>
 
