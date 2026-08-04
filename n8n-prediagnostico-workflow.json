@@ -1,0 +1,87 @@
+{
+  "name": "Prediagnóstico dental con IA (Clínica Sonrisa)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "prediagnostico",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "webhook-entrada",
+      "name": "Webhook (recibe la foto)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Prepara la petición al modelo de visión de Anthropic\nconst body = $input.first().json.body || $input.first().json;\nconst dataUrl = body.imagen || '';\nconst nivel = body.nivel === 'profesional' ? 'profesional' : 'sencillo';\n\nconst match = dataUrl.match(/^data:(image\\/(?:jpeg|png|webp));base64,(.+)$/s);\nif (!match) {\n  throw new Error('Imagen no válida: se esperaba un dataURL base64 (jpeg/png/webp)');\n}\nconst mediaType = match[1];\nconst base64 = match[2];\n\nconst sistemaBase = `Eres el asistente de valoración visual de la Clínica Dental Sonrisa. Analizas fotografías de bocas/dientes enviadas por pacientes y das una PRIMERA VALORACIÓN ORIENTATIVA, nunca un diagnóstico.\\n\\nReglas obligatorias:\\n- Si la imagen NO muestra una boca/dientes o la calidad impide valorarla, dilo y pide una foto mejor (buena luz, boca abierta, enfocada). No inventes hallazgos.\\n- Describe solo lo visible: higiene/placa/sarro aparente, estado aparente de encías, alineación, desgastes, manchas, posibles lesiones visibles. Usa lenguaje de probabilidad ('se aprecia', 'compatible con', 'podría'), nunca afirmaciones diagnósticas.\\n- No prescribas medicamentos ni tratamientos concretos.\\n- Indica una orientación de urgencia: sin signos de alarma / conviene revisión / conviene revisión pronto.\\n- Cierra siempre recomendando confirmación con un odontólogo (primera consulta gratuita en la clínica).\\n- Responde en español, en el formato: **Lo que se aprecia en la foto:** (lista), **¿Es urgente?**, **Siguiente paso:**. Máximo ~200 palabras.`;\n\nconst nivelInstr = nivel === 'profesional'\n  ? 'NIVEL: PROFESIONAL. Usa terminología clínica odontológica (nomenclatura FDI si identificas piezas, gingivitis/periodontitis, tartrectomía, lesiones cariosas, etc.), como un informe entre colegas.'\n  : 'NIVEL: SENCILLO. Explica como a un paciente sin conocimientos, sin tecnicismos, con tono cercano y tranquilizador.';\n\nreturn [{\n  json: {\n    payload: {\n      model: 'claude-opus-5',\n      max_tokens: 1024,\n      system: sistemaBase + '\\n\\n' + nivelInstr,\n      messages: [{\n        role: 'user',\n        content: [\n          { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },\n          { type: 'text', text: 'Valora esta fotografía dental según tus instrucciones.' }\n        ]\n      }]\n    }\n  }\n}];"
+      },
+      "id": "preparar-peticion",
+      "name": "Preparar petición IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.payload) }}",
+        "options": { "timeout": 120000 }
+      },
+      "id": "llamada-anthropic",
+      "name": "Claude (visión)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 0],
+      "credentials": {
+        "httpHeaderAuth": {
+          "name": "Anthropic API key (cabecera x-api-key)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extrae el texto de la respuesta del modelo\nconst r = $input.first().json;\nif (r.stop_reason === 'refusal') {\n  return [{ json: { resultado: '**No se ha podido analizar esta imagen.** Prueba con otra fotografía de tus dientes con buena luz.' } }];\n}\nconst texto = (r.content || []).filter(b => b.type === 'text').map(b => b.text).join('\\n');\nreturn [{ json: { resultado: texto || 'No se recibió respuesta del análisis.' } }];"
+      },
+      "id": "extraer-texto",
+      "name": "Extraer resultado",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 0]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ resultado: $json.resultado }) }}"
+      },
+      "id": "responder",
+      "name": "Responder a la web",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [880, 0]
+    }
+  ],
+  "connections": {
+    "Webhook (recibe la foto)": { "main": [[{ "node": "Preparar petición IA", "type": "main", "index": 0 }]] },
+    "Preparar petición IA": { "main": [[{ "node": "Claude (visión)", "type": "main", "index": 0 }]] },
+    "Claude (visión)": { "main": [[{ "node": "Extraer resultado", "type": "main", "index": 0 }]] },
+    "Extraer resultado": { "main": [[{ "node": "Responder a la web", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}

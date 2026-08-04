@@ -27,6 +27,7 @@
       <ul class="nav__menu" id="navMenu">
         <li><a href="#servicios">Tratamientos</a></li>
         <li><a href="#tecnologia">Tecnología</a></li>
+        <li><a href="#prediagnostico">Prediagnóstico IA</a></li>
         <li><a href="#equipo">Equipo</a></li>
         <li><a href="#opiniones">Opiniones</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -156,6 +157,47 @@
         </div>
         <div class="visual__card visual__card--float1"><strong>0,1 mm</strong>precisión</div>
         <div class="visual__card visual__card--float2"><strong>-40 %</strong>tiempo de sillón</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prediagnóstico con IA -->
+  <section class="section" id="prediagnostico">
+    <div class="container split">
+      <div class="split__text reveal">
+        <p class="kicker">Prediagnóstico con IA</p>
+        <h2 class="section__title section__title--left">Sube una foto de tus dientes<br>y obtén una primera valoración</h2>
+        <p class="split__lead">Nuestra IA analiza tu foto en segundos y te orienta sobre lo que ve — como un primer vistazo antes de la consulta.</p>
+        <ul class="checklist">
+          <li><strong>1. Saca una foto</strong> — con buena luz, boca abierta, dientes visibles.</li>
+          <li><strong>2. Elige el nivel</strong> — explicación sencilla o informe profesional.</li>
+          <li><strong>3. Recibe tu valoración</strong> — orientativa y al momento.</li>
+        </ul>
+        <p class="diag__legal">⚕️ <strong>Importante:</strong> esta herramienta ofrece una valoración orientativa generada por IA y <strong>no es un diagnóstico médico</strong>. No sustituye la exploración de un odontólogo. Ante dolor o dudas, <a href="#cita">pide cita</a> o llama al <a href="tel:+34912345678">912 345 678</a>.</p>
+      </div>
+      <div class="reveal">
+        <div class="diag__card">
+          <label class="diag__drop" id="diagDrop">
+            <input type="file" id="diagFile" accept="image/*" capture="environment" hidden>
+            <img id="diagPreview" alt="Vista previa de tu foto" hidden>
+            <span class="diag__drop-inner" id="diagDropText">
+              <span class="diag__drop-icon">📷</span>
+              <strong>Toca para hacer una foto</strong>
+              <span>o elige una de tu galería</span>
+            </span>
+          </label>
+          <div class="diag__pills" role="radiogroup" aria-label="Nivel de explicación">
+            <label><input type="radio" name="nivel" value="sencillo" checked><span>😊 Explicación sencilla</span></label>
+            <label><input type="radio" name="nivel" value="profesional"><span>🩺 Informe profesional</span></label>
+          </div>
+          <label class="diag__consent">
+            <input type="checkbox" id="diagConsent">
+            <span>Acepto que mi imagen se analice con IA. Entiendo que el resultado es orientativo y no un diagnóstico.</span>
+          </label>
+          <button type="button" class="btn btn--primary btn--full" id="diagBtn" disabled>Analizar mi foto</button>
+          <p class="diag__status" id="diagStatus" hidden></p>
+          <div class="diag__result" id="diagResult" hidden></div>
+        </div>
       </div>
     </div>
   </section>
@@ -370,5 +412,6 @@
 
   <script src="script.js"></script>
   <script src="chatbot.js"></script>
+  <script src="prediagnostico.js"></script>
 </body>
 </html>
