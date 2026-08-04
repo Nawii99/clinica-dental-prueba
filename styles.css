@@ -358,6 +358,44 @@ img { max-width: 100%; }
   animation: scan 3.2s linear infinite;
 }
 @keyframes scan { 0% { top: -40%; } 100% { top: 110%; } }
+/* Visor 3D de la arcada */
+.visual__scan { perspective: 700px; touch-action: none; cursor: grab; user-select: none; }
+.visual__scan:active { cursor: grabbing; }
+.scan3d__arch {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+}
+.diente {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(180deg, #ffffff, #d7eef2 70%, #b9dde4);
+  border-radius: 45% 45% 50% 50% / 35% 35% 62% 62%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35), inset 0 -3px 5px rgba(11, 79, 99, 0.18);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.diente.scanned {
+  background: linear-gradient(180deg, #a7f6ea, #2dd4bf);
+  box-shadow: 0 0 14px rgba(45, 212, 191, 0.85);
+}
+.scan3d__hud {
+  position: absolute;
+  bottom: 7px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #9ff0e4;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+}
+.scan3d__hud span { font-variant-numeric: tabular-nums; }
+
 .visual__bar { height: 7px; border-radius: 99px; background: var(--bg-alt); overflow: hidden; }
 .visual__bar span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
 

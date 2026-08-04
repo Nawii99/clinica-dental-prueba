@@ -145,11 +145,14 @@
         </ul>
         <a href="#cita" class="btn btn--primary">Compruébalo en tu primera visita</a>
       </div>
-      <div class="split__visual reveal" aria-hidden="true">
+      <div class="split__visual reveal">
         <div class="visual__card visual__card--main">
-          <div class="visual__scan"></div>
+          <div class="visual__scan" id="scanStage">
+            <div class="scan3d__arch" id="scanArch"></div>
+            <div class="scan3d__hud"><span id="scanPct">0 %</span> · arrastra para girar</div>
+          </div>
           <p>Escaneado 3D · arcada superior</p>
-          <div class="visual__bar"><span style="width:86%"></span></div>
+          <div class="visual__bar"><span id="scanBar" style="width:0%"></span></div>
         </div>
         <div class="visual__card visual__card--float1"><strong>0,1 mm</strong>precisión</div>
         <div class="visual__card visual__card--float2"><strong>-40 %</strong>tiempo de sillón</div>
