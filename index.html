@@ -222,6 +222,24 @@
     </div>
   </footer>
 
+  <!-- Chatbot -->
+  <div class="chat">
+    <button class="chat__toggle" id="chatToggle" aria-label="Abrir chat" aria-expanded="false">💬</button>
+    <div class="chat__panel" id="chatPanel" hidden>
+      <div class="chat__header">
+        <span>🦷 Asistente Sonrisa</span>
+        <button class="chat__close" id="chatClose" aria-label="Cerrar chat">✕</button>
+      </div>
+      <div class="chat__messages" id="chatMessages" aria-live="polite"></div>
+      <div class="chat__quick" id="chatQuick"></div>
+      <form class="chat__inputrow" id="chatForm">
+        <input type="text" id="chatInput" placeholder="Escribe tu pregunta…" autocomplete="off">
+        <button type="submit" aria-label="Enviar">➤</button>
+      </form>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 </html>
