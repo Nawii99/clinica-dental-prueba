@@ -122,11 +122,27 @@ if (scanStage) {
   }, 60);
 }
 
-// Formulario de cita (demo: sin backend, solo validación y confirmación)
+// Aviso de almacenamiento técnico (se muestra una sola vez)
+const cookieAviso = document.getElementById('cookieAviso');
+if (cookieAviso) {
+  let aceptado = false;
+  try { aceptado = localStorage.getItem('avisoTecnico') === '1'; } catch (e) { aceptado = true; }
+  if (!aceptado) {
+    setTimeout(() => { cookieAviso.hidden = false; }, 800);
+  }
+  document.getElementById('cookieOk').addEventListener('click', () => {
+    cookieAviso.hidden = true;
+    try { localStorage.setItem('avisoTecnico', '1'); } catch (e) { /* modo privado */ }
+  });
+}
+
+// Formulario de cita.
+// Con CLINICA.formspreeId configurado envía de verdad (Formspree, plan gratuito).
+// Sin configurar funciona en modo demo: valida y confirma, pero no envía nada.
 const form = document.getElementById('formCita');
 const formOk = document.getElementById('formOk');
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   let valid = true;
@@ -135,12 +151,42 @@ form.addEventListener('submit', (e) => {
     input.classList.toggle('error', empty);
     if (empty) valid = false;
   });
-
   if (!valid) return;
 
-  form.reset();
-  formOk.hidden = false;
-  setTimeout(() => { formOk.hidden = true; }, 6000);
+  const boton = form.querySelector('button[type="submit"]');
+  const textoOriginal = boton.textContent;
+  const idFormspree = (typeof CLINICA !== 'undefined' && CLINICA.formspreeId) || '';
+
+  function confirmar(mensaje) {
+    formOk.textContent = mensaje;
+    formOk.hidden = false;
+    setTimeout(() => { formOk.hidden = true; }, 8000);
+  }
+
+  if (!idFormspree) {
+    form.reset();
+    confirmar('✅ ¡Gracias! Te llamaremos muy pronto para confirmar tu cita. (Demo: los datos no se han enviado.)');
+    return;
+  }
+
+  boton.disabled = true;
+  boton.textContent = 'Enviando…';
+  try {
+    const respuesta = await fetch('https://formspree.io/f/' + idFormspree, {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      body: new FormData(form),
+    });
+    if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
+    form.reset();
+    confirmar('✅ ¡Gracias! Hemos recibido tu solicitud y te llamaremos en menos de 24 h.');
+  } catch (err) {
+    confirmar('⚠️ No hemos podido enviar tu solicitud. Llámanos al ' +
+      (typeof CLINICA !== 'undefined' ? CLINICA.telefono : '912 345 678') + ' y te atendemos al momento.');
+  } finally {
+    boton.disabled = false;
+    boton.textContent = textoOriginal;
+  }
 });
 
 // Año actual en el pie

@@ -1,9 +1,9 @@
 // Prediagnóstico dental con IA.
 // La web es estática: el análisis real lo hace un backend (workflow de n8n que
-// llama a un modelo de visión). Pega aquí la URL de tu webhook de n8n para
-// activarlo. Sin URL, funciona en MODO DEMO (resultado de ejemplo, claramente
-// señalizado — la foto NO se analiza).
-const WEBHOOK_URL = '';
+// llama a un modelo de visión). La URL del webhook se configura en config.js
+// (CLINICA.webhookPrediagnostico). Sin URL funciona en MODO DEMO: muestra un
+// resultado de ejemplo claramente señalizado y la foto NO se analiza.
+const WEBHOOK_URL = (typeof CLINICA !== 'undefined' && CLINICA.webhookPrediagnostico) || '';
 
 (function () {
   const $ = (id) => document.getElementById(id);

@@ -5,6 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Clínica Dental Sonrisa — odontología avanzada en Madrid. Implantes, ortodoncia invisible y estética dental con tecnología digital. Primera consulta gratuita.">
   <title>Clínica Dental Sonrisa | Odontología avanzada en Madrid</title>
+  <link rel="canonical" href="https://nawii99.github.io/clinica-dental-prueba/">
+  <meta name="theme-color" content="#0e7490">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>">
+
+  <!-- Cómo se ve al compartir por WhatsApp / redes -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Clínica Dental Sonrisa">
+  <meta property="og:title" content="Clínica Dental Sonrisa | Odontología avanzada en Madrid">
+  <meta property="og:description" content="Implantes, ortodoncia invisible y estética dental con diagnóstico digital 3D. Primera consulta gratuita.">
+  <meta property="og:url" content="https://nawii99.github.io/clinica-dental-prueba/">
+  <meta property="og:image" content="https://nawii99.github.io/clinica-dental-prueba/fotos/portada.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Datos estructurados para Google (ficha de clínica dental) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    "name": "Clínica Dental Sonrisa",
+    "description": "Odontología avanzada en Madrid: implantes, ortodoncia invisible y estética dental.",
+    "telephone": "+34912345678",
+    "email": "hola@clinicasonrisa.es",
+    "url": "https://nawii99.github.io/clinica-dental-prueba/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle de la Salud 12",
+      "postalCode": "28001",
+      "addressLocality": "Madrid",
+      "addressRegion": "Madrid",
+      "addressCountry": "ES"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 40.4268, "longitude": -3.6869 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "14:00" }
+    ],
+    "priceRange": "€€",
+    "medicalSpecialty": "Dentistry",
+    "availableService": [
+      { "@type": "MedicalProcedure", "name": "Implantes dentales" },
+      { "@type": "MedicalProcedure", "name": "Ortodoncia invisible" },
+      { "@type": "MedicalProcedure", "name": "Estética dental" },
+      { "@type": "MedicalProcedure", "name": "Odontopediatría" }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -219,19 +266,19 @@
       <h2 class="section__title reveal">Profesionales que aman lo que hacen</h2>
       <div class="grid grid--3">
         <article class="card card--team reveal">
-          <div class="card__ring"><span>LG</span></div>
+          <div class="card__ring"><span>LG</span><img src="fotos/laura-gomez.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
           <h3>Dra. Laura Gómez</h3>
           <p class="card__role">Directora médica · Implantología</p>
           <p>Doctora en Odontología (UCM). Más de 3.000 implantes y formación continua en cirugía guiada.</p>
         </article>
         <article class="card card--team reveal">
-          <div class="card__ring"><span>CR</span></div>
+          <div class="card__ring"><span>CR</span><img src="fotos/carlos-ruiz.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
           <h3>Dr. Carlos Ruiz</h3>
           <p class="card__role">Ortodoncia</p>
           <p>Máster en Ortodoncia. Invisalign Diamond Provider: cientos de sonrisas alineadas sin brackets.</p>
         </article>
         <article class="card card--team reveal">
-          <div class="card__ring"><span>AM</span></div>
+          <div class="card__ring"><span>AM</span><img src="fotos/ana-martin.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
           <h3>Dra. Ana Martín</h3>
           <p class="card__role">Odontopediatría</p>
           <p>Especialista en manejo de conducta infantil. La favorita de los peques (y de sus padres).</p>
@@ -348,19 +395,24 @@
       <div class="grid grid--3">
         <div class="card card--contact reveal">
           <h3>Dirección</h3>
-          <p>Calle de la Salud 12<br>28001 Madrid</p>
-          <p class="card__extra">Metro: Serrano (L4) · Parking gratuito para pacientes</p>
+          <p><span data-campo="calle">Calle de la Salud 12</span><br><span data-campo="ciudad-cp">28001 Madrid</span></p>
+          <p class="card__extra" data-campo="como-llegar">Metro: Serrano (L4) · Parking gratuito para pacientes</p>
         </div>
         <div class="card card--contact reveal">
           <h3>Contacto</h3>
-          <p><a href="tel:+34912345678">912 345 678</a><br><a href="mailto:hola@clinicasonrisa.es">hola@clinicasonrisa.es</a></p>
+          <p><a data-enlace="tel" href="tel:+34912345678" data-campo="telefono">912 345 678</a><br><a data-enlace="email" href="mailto:hola@clinicasonrisa.es" data-campo="email">hola@clinicasonrisa.es</a></p>
           <p class="card__extra">WhatsApp disponible en horario de clínica</p>
         </div>
         <div class="card card--contact reveal">
           <h3>Horario</h3>
-          <p>Lunes a viernes: 9:00–20:00<br>Sábados: 10:00–14:00</p>
-          <p class="card__extra">Urgencias: el mismo día</p>
+          <p><span data-campo="horario-semana">Lunes a viernes: 9:00–20:00</span><br><span data-campo="horario-sabado">Sábados: 10:00–14:00</span></p>
+          <p class="card__extra" data-campo="horario-urgencias">Urgencias: el mismo día</p>
         </div>
+      </div>
+
+      <div class="mapa reveal">
+        <iframe id="mapaClinica" title="Ubicación de la clínica en el mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a id="linkComoLlegar" class="btn btn--primary mapa__btn" href="#" target="_blank" rel="noopener">📍 Cómo llegar</a>
       </div>
     </div>
   </section>
@@ -388,10 +440,21 @@
       </div>
     </div>
     <div class="container footer__bottom">
-      <p>© <span id="year"></span> Clínica Dental Sonrisa. Todos los derechos reservados.</p>
-      <p>Aviso legal · Privacidad · Cookies</p>
+      <p>© <span id="year"></span> <span data-campo="nombre">Clínica Dental Sonrisa</span>. Todos los derechos reservados.</p>
+      <p><a href="legal.html">Aviso legal</a> · <a href="legal.html#privacidad">Privacidad</a> · <a href="legal.html#cookies">Cookies</a></p>
     </div>
   </footer>
+
+  <!-- WhatsApp -->
+  <a class="wa" id="waBtn" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.4 1.9.8 2.6.9 3.5.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg>
+  </a>
+
+  <!-- Aviso de almacenamiento técnico -->
+  <div class="cookies" id="cookieAviso" hidden>
+    <p>Usamos solo almacenamiento técnico necesario para que la web funcione. No usamos cookies de analítica ni de publicidad. <a href="legal.html#cookies">Más información</a>.</p>
+    <button type="button" class="btn btn--primary btn--small" id="cookieOk">Entendido</button>
+  </div>
 
   <!-- Chatbot -->
   <div class="chat">
@@ -410,6 +473,7 @@
     </div>
   </div>
 
+  <script src="config.js"></script>
   <script src="script.js"></script>
   <script src="chatbot.js"></script>
   <script src="prediagnostico.js"></script>

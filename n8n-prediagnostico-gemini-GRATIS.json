@@ -1,0 +1,75 @@
+{
+  "name": "Prediagnóstico dental con IA — Google Gemini (capa gratuita)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "prediagnostico",
+        "responseMode": "responseNode",
+        "options": { "allowedOrigins": "*" }
+      },
+      "id": "webhook-entrada",
+      "name": "Webhook (recibe la foto)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Prepara la petición a la API de Google Gemini (capa gratuita)\nconst body = $input.first().json.body || $input.first().json;\nconst dataUrl = body.imagen || '';\nconst nivel = body.nivel === 'profesional' ? 'profesional' : 'sencillo';\n\nconst match = dataUrl.match(/^data:(image\\/(?:jpeg|png|webp));base64,(.+)$/s);\nif (!match) {\n  throw new Error('Imagen no valida: se esperaba un dataURL base64 (jpeg/png/webp)');\n}\nconst mimeType = match[1];\nconst base64 = match[2];\n\nconst sistemaBase = `Eres el asistente de valoracion visual de una clinica dental. Analizas fotografias de bocas/dientes enviadas por pacientes y das una PRIMERA VALORACION ORIENTATIVA, nunca un diagnostico.\\n\\nReglas obligatorias:\\n- Si la imagen NO muestra una boca/dientes o la calidad impide valorarla, dilo y pide una foto mejor (buena luz, boca abierta, enfocada). No inventes hallazgos.\\n- Describe solo lo visible: higiene/placa/sarro aparente, estado aparente de encias, alineacion, desgastes, manchas, posibles lesiones visibles. Usa lenguaje de probabilidad ('se aprecia', 'compatible con', 'podria'), nunca afirmaciones diagnosticas.\\n- No prescribas medicamentos ni tratamientos concretos.\\n- Indica una orientacion de urgencia: sin signos de alarma / conviene revision / conviene revision pronto.\\n- Cierra siempre recomendando confirmacion con un odontologo (primera consulta gratuita en la clinica).\\n- Responde en espanol, en el formato: **Lo que se aprecia en la foto:** (lista), **Es urgente?**, **Siguiente paso:**. Maximo 200 palabras.`;\n\nconst nivelInstr = nivel === 'profesional'\n  ? 'NIVEL: PROFESIONAL. Usa terminologia clinica odontologica (nomenclatura FDI si identificas piezas, gingivitis/periodontitis, tartrectomia, lesiones cariosas, etc.), como un informe entre colegas.'\n  : 'NIVEL: SENCILLO. Explica como a un paciente sin conocimientos, sin tecnicismos, con tono cercano y tranquilizador.';\n\nreturn [{\n  json: {\n    payload: {\n      systemInstruction: { parts: [{ text: sistemaBase + '\\n\\n' + nivelInstr }] },\n      contents: [{\n        role: 'user',\n        parts: [\n          { inline_data: { mime_type: mimeType, data: base64 } },\n          { text: 'Valora esta fotografia dental segun tus instrucciones.' }\n        ]\n      }],\n      generationConfig: { maxOutputTokens: 1024, temperature: 0.2 }\n    }\n  }\n}];"
+      },
+      "id": "preparar-peticion",
+      "name": "Preparar petición IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={{ $env.GEMINI_API_KEY }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{ "name": "content-type", "value": "application/json" }]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.payload) }}",
+        "options": { "timeout": 120000 }
+      },
+      "id": "llamada-gemini",
+      "name": "Gemini (visión)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extrae el texto de la respuesta de Gemini\nconst r = $input.first().json;\nconst cand = (r.candidates || [])[0];\nif (!cand) {\n  return [{ json: { resultado: '**No se ha podido analizar esta imagen.** Prueba con otra fotografia de tus dientes con buena luz.' } }];\n}\nif (cand.finishReason && cand.finishReason !== 'STOP' && cand.finishReason !== 'MAX_TOKENS') {\n  return [{ json: { resultado: '**No se ha podido analizar esta imagen.** Envia una fotografia clara de tus dientes.' } }];\n}\nconst texto = (cand.content?.parts || []).map(p => p.text).filter(Boolean).join('\\n');\nreturn [{ json: { resultado: texto || 'No se recibio respuesta del analisis.' } }];"
+      },
+      "id": "extraer-texto",
+      "name": "Extraer resultado",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 0]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ resultado: $json.resultado }) }}"
+      },
+      "id": "responder",
+      "name": "Responder a la web",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [880, 0]
+    }
+  ],
+  "connections": {
+    "Webhook (recibe la foto)": { "main": [[{ "node": "Preparar petición IA", "type": "main", "index": 0 }]] },
+    "Preparar petición IA": { "main": [[{ "node": "Gemini (visión)", "type": "main", "index": 0 }]] },
+    "Gemini (visión)": { "main": [[{ "node": "Extraer resultado", "type": "main", "index": 0 }]] },
+    "Extraer resultado": { "main": [[{ "node": "Responder a la web", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
