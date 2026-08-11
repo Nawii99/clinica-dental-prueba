@@ -612,12 +612,23 @@ img { max-width: 100%; }
   object-fit: cover;
 }
 
-/* ===== WhatsApp ===== */
+/* ===== Iconos SVG (sustituyen a los emojis) ===== */
+.sprite { display: none; }
+.ico {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+  vertical-align: -0.2em;
+  margin-right: 0.4em;
+}
+.ico--lg { width: 1.5em; height: 1.5em; }
+
+/* ===== WhatsApp (encima del chat) ===== */
 .wa {
   position: fixed;
-  bottom: 1.25rem;
-  right: 5.5rem;
-  z-index: 90;
+  bottom: 5.6rem;
+  right: 1.25rem;
+  z-index: 91;
   display: grid;
   place-items: center;
   width: 3.6rem;
@@ -697,13 +708,26 @@ img { max-width: 100%; }
 }
 .chat__toggle:hover { transform: scale(1.08); }
 
+.chat__toggle svg { width: 1.7rem; height: 1.7rem; }
+.chat__close svg { width: 1.05rem; height: 1.05rem; display: block; }
+.chat__inputrow button svg { width: 1.1rem; height: 1.1rem; }
+.chat__header .ico { margin-right: 0.45rem; }
+.chat__quick button { display: inline-flex; align-items: center; }
+.chat__quick .ico { width: 1rem; height: 1rem; margin-right: 0.35rem; }
+.diag__pills span { display: flex; align-items: center; justify-content: center; gap: 0.1rem; }
+.diag__pills .ico { width: 1.05rem; height: 1.05rem; }
+.diag__drop-icon { width: 2.4rem; height: 2.4rem; color: var(--primary); margin-bottom: 0.4rem; }
+.diag__legal .ico { color: var(--primary); }
+.mapa__btn { display: inline-flex; align-items: center; }
+.footer__brand { display: flex; align-items: center; gap: 0.15rem; }
+
 .chat__panel {
   position: fixed;
-  bottom: 5.5rem;
+  bottom: 9.7rem;
   right: 1.25rem;
   z-index: 90;
   width: min(22rem, calc(100vw - 2rem));
-  height: min(30rem, calc(100vh - 8rem));
+  height: min(28rem, calc(100vh - 12rem));
   background: #fff;
   border-radius: var(--radius);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.24);
@@ -796,4 +820,22 @@ img { max-width: 100%; }
     box-shadow: 0 14px 24px rgba(11, 79, 99, 0.14);
   }
   .nav__menu.open { display: flex; }
+}
+
+/* Precio orientativo en las tarjetas de tratamiento */
+.card__precio {
+  margin-top: 0.9rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--line);
+  font-size: 0.86rem !important;
+  color: var(--ink-soft);
+}
+.card__precio strong { color: var(--primary-dark); font-weight: 800; }
+.precios__nota {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  max-width: 44rem;
+  margin-inline: auto;
 }
